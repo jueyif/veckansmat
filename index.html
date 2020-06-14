@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Veckans Mat</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Page Content  -->
+    <div id="content">
+      <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="container-fluid">
+
+          <div>
+            <ul class="nav navbar-nav">
+              <li class="mr-3"><a href="#willys" id="willys">
+                  <img id="willyslogo" src="img/willys_logo_small.png" class="d-lg-none" height="30" />
+                  <img id="willyslogo" src="img/willys_logo.svg" class="d-none d-lg-block" height="20" />
+                </a></li>
+              <li class="mr-3"><a href="#hemkop" id="hemkop">
+                  <img id="hemkoplogo" src="img/hemkop_logo.svg" class="d-lg-none" width="30" />
+                  <img id="hemkoplogo" src="img/hemkop_logo.svg" class="d-none d-lg-block" height="20" />
+                </a></li>
+              <li class="mr-3"><a href="#lidl" id="lidl">
+                  <img id="lidllogo" src="img/lidl_logo.png" class="d-none d-lg-block" height="20" />
+                  <img id="lidllogo" src="img/lidl_logo.svg" class="d-lg-none" height="30" />
+                </a></li>
+              <li class="dropdown show mr-3"><a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                  <img id="icalogo" src="img/ica_logo.png" height="20" />
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#icamaxi" id="icamaxi">
+                    <img id="icamaxilogo" src="img/icamaxi_logo.png" height="20" />
+                  </a>
+                  <a class="dropdown-item" href="#icakvantum" id="icakvantum">
+                    <img id="icakvantumlogo" src="img/icakvantum_logo.webp" height="20" />
+                  </a>
+                </div>
+              </li>
+              <li class="dropdown show mr-3"><a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                  <img id="cooplogo" src="img/coop_logo.png" height="20" />
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#storacoop" id="storacoop">
+                    <img id="storacooplogo" src="img/storacoop_logo.png" height="20" />
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" id="sidebarCollapse" class="btn btn-info ml-auto" data-toggle="collapse"
+            data-target="#sidebar">
+            <i class="fas fa-align-right"></i>
+            <span>Mina inköpslista & blacklist</span>
+          </button>
+
+        </div>
+      </nav>
+
+      <!-- Spinner -->
+      <div class="text-center mt-5 d-none" id="spinner">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <!-- show product -->
+      <main role="main" class="container" style="width: 100%;">
+        <div class="row" id="showAllProducts">
+        </div>
+
+        <!-- Modal for adding phrase to blacklist-->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add new phrase to blacklist</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="currentProductName">Product name</label>
+                    <input type="text" class="form-control" id="originalProductName" value="" readonly>
+                    <small class="form-text text-muted">Move your cursor to select the words that you want to
+                      block! (One phrase at a time)</small>
+                    <span id="selectedWords"> </span>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveChangesButton" disabled>Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Sidebar  -->
+    <nav id="sidebar" class="collapse active">
+      <div class="sidebar-header">
+        <button type="button" class="btn btn-default btn-sm deletebutton" onclick="closeSidebar()"
+          style="float: right;"><svg class="bi bi-x" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+            <path fill-rule="evenodd"
+              d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+          </svg></button>
+        <h3>Mina inköpslista & blacklist</h3>
+      </div>
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a id="shoppinglistTab" class="nav-link active" href="#">
+            Inköpslista
+          </a></li>
+        <li class="nav-item"><a id="blacklistTab" class="nav-link" href="#">
+            blacklist
+          </a></li>
+      </ul>
+
+      <ul id="shoppinglistGroup" class="list-group">
+        <li id="willysTab" class="active">
+          <a href="#willysSublist" data-toggle="collapse" class="dropdown-toggle collapsed"
+            id="willysShoppingList">Willys</a>
+          <ul class="collapse list-unstyled d-none" id="willysSublist">
+          </ul>
+        </li>
+
+        <li id="hemkopTab" class="active">
+          <a href="#hemkopSublist" data-toggle="collapse" class="dropdown-toggle collapsed"
+            id="hemkopShoppingList">Hemköp</a>
+          <ul class="collapse list-unstyled d-none" id="hemkopSublist">
+          </ul>
+        </li>
+
+        <li id="lidlTab" class="active">
+          <a href="#lidlSublist" data-toggle="collapse" class="dropdown-toggle collapsed" id="lidlShoppingList">Lidl</a>
+          <ul class="collapse list-unstyled d-none" id="lidlSublist">
+          </ul>
+        </li>
+
+        <li id="icamaxiTab" class="active">
+          <a href="#icamaxiSublist" data-toggle="collapse" class="dropdown-toggle collapsed"
+            id="icamaxiShoppingList">Ica Maxi</a>
+          <ul class="collapse list-unstyled d-none" id="icamaxiSublist">
+          </ul>
+        </li>
+
+        <li id="storacoopTab" class="active">
+          <a href="#storacoopSublist" data-toggle="collapse" class="dropdown-toggle collapsed"
+            id="storacoopShoppingList">Stora Coop</a>
+          <ul class="collapse list-unstyled d-none" id="storacoopSublist">
+          </ul>
+        </li>
+      </ul>
+
+      <!-- blacklist -->
+      <ul id="blacklistGroup" class="list-group d-none">
+      </ul>
+
+    </nav>
+  </div>
+
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  <script src="js/displayproduct.js"></script>
+  <script src="js/blacklist.js"></script>
+  <script src="js/shoppinglist.js"></script>
+  <script src="js/sidebar.js"></script>
+</body>
+
+</html>
