@@ -10,7 +10,6 @@ var storacooplogo = document.getElementById("storacoop")
 var spinner = document.getElementById("spinner")
 var showAllProducts = document.getElementById("showAllProducts")
 
-// var blButton = document.getElementById("blButton")
 var currentStore = window.location.hash.replace('#', '')
 
 // spinner 
@@ -37,7 +36,7 @@ function addActiveSign(logoname) {
 
 // hide the undefined items
 function isUndefined(toBeChecked) {
-    if (typeof (toBeChecked) == "undefined" || toBeChecked == "No brand" || toBeChecked == "No Brand") {
+    if (toBeChecked == undefined || toBeChecked == "No brand" || toBeChecked == "No Brand") {
         return ``
     } else {
         return toBeChecked

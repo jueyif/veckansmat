@@ -29,6 +29,6 @@ function deleteFromShopplinglist(deleteItem) {
             shoplistDB.splice(index, 1)
         }
     }
-    reloadShoppinglist()
+    resetShoppinglist()
     reloadAllStoreSublist()
 }

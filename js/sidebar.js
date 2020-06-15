@@ -71,59 +71,6 @@ function reloadAllStoreSublist() {
     reloadAStoreSublist(storacoopSublist, "storacoop")
 }
 
-function showANDhideWillys() {
-    if (willysSublist.classList.contains('d-none')) {
-        willysSublist.classList.remove('d-none')
-    } else {
-        willysSublist.classList.add('d-none')
-    }
-}
-function showANDhideHemkop() {
-    if (hemkopSublist.classList.contains('d-none')) {
-        hemkopSublist.classList.remove('d-none')
-    } else {
-        hemkopSublist.classList.add('d-none')
-    }
-}
-function showANDhideLidl() {
-    if (lidlSublist.classList.contains('d-none')) {
-        lidlSublist.classList.remove('d-none')
-    } else {
-        lidlSublist.classList.add('d-none')
-    }
-}
-function showANDhideIcamaxi() {
-    if (icamaxiSublist.classList.contains('d-none')) {
-        icamaxiSublist.classList.remove('d-none')
-    } else {
-        icamaxiSublist.classList.add('d-none')
-    }
-}
-function showANDhideStoracoop() {
-    if (storacoopSublist.classList.contains('d-none')) {
-        storacoopSublist.classList.remove('d-none')
-    } else {
-        storacoopSublist.classList.add('d-none')
-    }
-}
-
-function showBlacklistTab() {
-    if (blacklistTab.classList == "nav-link") {
-        shoppinglistGroup.classList.add("d-none")
-        blacklistGroup.classList.remove("d-none")
-        blacklistTab.classList.add("active")
-        shoppinglistTab.classList.remove("active")
-    }
-}
-function showShoppinglistTab() {
-    shoppinglistGroup.classList.remove("d-none")
-    blacklistGroup.classList.add("d-none")
-    blacklistTab.classList.remove("active")
-    shoppinglistTab.classList.add("active")
-    finalShoppinglistTab()
-    reloadAllStoreSublist()
-}
-
 function closeSidebar() {
     sidebar.classList.remove("show")
     sidebar.classList.add("active")
@@ -144,11 +91,56 @@ $(document).ready(function () {
     })
 })
 
-blacklistTab.addEventListener("click", showBlacklistTab)
-shoppinglistTab.addEventListener("click", showShoppinglistTab)
+blacklistTab.addEventListener("click", function(){
+    if (blacklistTab.classList == "nav-link") {
+        shoppinglistGroup.classList.add("d-none")
+        blacklistGroup.classList.remove("d-none")
+        blacklistTab.classList.add("active")
+        shoppinglistTab.classList.remove("active")
+    }
+})
+shoppinglistTab.addEventListener("click", function() {
+    shoppinglistGroup.classList.remove("d-none")
+    blacklistGroup.classList.add("d-none")
+    blacklistTab.classList.remove("active")
+    shoppinglistTab.classList.add("active")
+    finalShoppinglistTab()
+    reloadAllStoreSublist()
+})
 
-willysShoppingList.addEventListener("click", showANDhideWillys)
-hemkopShoppingList.addEventListener("click", showANDhideHemkop)
-icamaxiShoppingList.addEventListener("click", showANDhideIcamaxi)
-lidlShoppingList.addEventListener("click", showANDhideLidl)
-storacoopShoppingList.addEventListener("click", showANDhideStoracoop)
+
+willysShoppingList.addEventListener("click",function(){
+    if (willysSublist.classList.contains('d-none')) {
+        willysSublist.classList.remove('d-none')
+    } else {
+        willysSublist.classList.add('d-none')
+    }
+})
+hemkopShoppingList.addEventListener("click", function(){
+    if (hemkopSublist.classList.contains('d-none')) {
+        hemkopSublist.classList.remove('d-none')
+    } else {
+        hemkopSublist.classList.add('d-none')
+    }
+})
+icamaxiShoppingList.addEventListener("click", function(){
+    if (icamaxiSublist.classList.contains('d-none')) {
+        icamaxiSublist.classList.remove('d-none')
+    } else {
+        icamaxiSublist.classList.add('d-none')
+    }
+})
+lidlShoppingList.addEventListener("click", function(){
+    if (lidlSublist.classList.contains('d-none')) {
+        lidlSublist.classList.remove('d-none')
+    } else {
+        lidlSublist.classList.add('d-none')
+    }
+})
+storacoopShoppingList.addEventListener("click", function(){
+    if (storacoopSublist.classList.contains('d-none')) {
+        storacoopSublist.classList.remove('d-none')
+    } else {
+        storacoopSublist.classList.add('d-none')
+    }
+})

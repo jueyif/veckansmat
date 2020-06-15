@@ -44,7 +44,7 @@ def getStoraCoopProductList():
             tmpProduct['jfr Pris'] = jfrPris
         else: 
             tmpProduct['jfrPris']  = None
-        if 'img src=' in product:
-            tmpProduct['img']= product.split('<img src="')[1].split('"')[0]
+        if 'img class' in product:
+            tmpProduct['img']= product.split('<img class="u-posAbsoluteCenter" src="')[1].split('"')[0]
         productList.append(tmpProduct)
     return productList
