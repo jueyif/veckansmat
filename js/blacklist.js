@@ -94,7 +94,6 @@ function deleteFromBlacklist(deleteItem) {
 }
 
 reloadBlacklist()
-checkURL()
 displayBlacklist()
 
 originalProductName.addEventListener('mouseup', isBlockable)

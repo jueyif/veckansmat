@@ -203,4 +203,6 @@ a.article:hover {
 .toLeft{
     padding-left: 0;
 }
-
+.storeSelected{
+    background:#7386D5;
+}

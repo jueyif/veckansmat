@@ -1,6 +1,9 @@
 var willyslogo = document.getElementById("willyslogo")
+var willyslogoSmall = document.getElementById("willyslogoSmall")
 var hemkoplogo = document.getElementById("hemkoplogo")
+var hemkoplogoSmall = document.getElementById("hemkoplogoSmall")
 var lidllogo = document.getElementById("lidllogo")
+var lidllogoSmall = document.getElementById("lidllogoSmall")
 var icalogo = document.getElementById("icalogo")
 var icamaxilogo = document.getElementById("icamaxi")
 var icakvantumlogo = document.getElementById("icakvantum")
@@ -21,9 +24,9 @@ function hideSpinner() {
     spinner.classList.add("d-none");
 }
 
-// show the current store logo bigger than the rest
+// show the current store 
 function hideActiveSign(logoname) {
-    logoname.height = "20"
+    logoname.classList.remove("storeSelected");
 }
 function addActiveSign(logoname) {
     hideActiveSign(willyslogo)
@@ -31,7 +34,10 @@ function addActiveSign(logoname) {
     hideActiveSign(cooplogo)
     hideActiveSign(icalogo)
     hideActiveSign(hemkoplogo)
-    logoname.height = "30"
+    hideActiveSign(hemkoplogoSmall)
+    hideActiveSign(willyslogoSmall)
+    hideActiveSign(lidllogoSmall)
+    logoname.classList.add("storeSelected");
 }
 
 // hide the undefined items
@@ -92,6 +98,7 @@ function hemkop() {
     icalogo.src = "img/ica_logo.png"
     cooplogo.src = "img/coop_logo.png"
     addActiveSign(hemkoplogo)
+    addActiveSign(hemkoplogoSmall)
     displayAProduct("json/hemkop.json")
     currentStore = "hemkop"
 }
@@ -99,6 +106,7 @@ function willys() {
     icalogo.src = "img/ica_logo.png"
     cooplogo.src = "img/coop_logo.png"
     addActiveSign(willyslogo)
+    addActiveSign(willyslogoSmall)
     displayAProduct("json/willys.json")
     currentStore = "willys"
 }
@@ -120,6 +128,7 @@ function lidl() {
     icalogo.src = "img/ica_logo.png"
     cooplogo.src = "img/coop_logo.png"
     addActiveSign(lidllogo)
+    addActiveSign(lidllogoSmall)
     displayAProduct("json/lidl.json")
     currentStore = "lidl"
 }
@@ -149,11 +158,10 @@ function checkURL() {
     }
 }
 
+checkURL()
 document.getElementById("hemkop").addEventListener("click", hemkop)
 document.getElementById("willys").addEventListener("click", willys)
 document.getElementById("icamaxi").addEventListener("click", icamaxi)
 document.getElementById("icakvantum").addEventListener("click", icakvantum)
 document.getElementById("lidl").addEventListener("click", lidl)
 document.getElementById("storacoop").addEventListener("click", storacoop)
-
-

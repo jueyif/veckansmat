@@ -20,9 +20,9 @@ def getIcaKvantumProductList():
             productPriceDecimal = product.split('<div class="product-price__decimal">')[1].split('</div>')[0].strip().strip('\:-')
             price = int(productPriceIntegral) + 0.01 * int(productPriceDecimal)
             tmpProduct['price'] =  str(Decimal(price).quantize(Decimal("0.00"))).replace('.',',') + ' kr'
-        else: tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ 'kr'
         if 'product-price__amount' in product:
             tmpProduct['price'] = product.split('<div class="product-price__amount">')[1].split(' f&#246;r</div>')[0].strip() + ' for ' + product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
+        else: tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ 'kr'
         if 'Jfr pris' in product:
             description = product.split('Jfr pris ')[1].split('.</p>')[0].strip()
             tmpJfrPris = re.findall(r'\d+', description)
@@ -50,9 +50,9 @@ def getIcaKvantumProductList():
             productPriceDecimal = product.split('<div class="product-price__decimal">')[1].split('</div>')[0].strip().strip(':-')
             price = int(productPriceIntegral) + 0.01 * int(productPriceDecimal)
             tmpProduct['price'] =  str(Decimal(price).quantize(Decimal("0.00"))).replace('.',',') + ' kr'
-        else: tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
         if 'product-price__amount' in product:
             tmpProduct['price'] = product.split('<div class="product-price__amount">')[1].split(' f&#246;r</div>')[0].strip() + ' for ' + product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
+        else: tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
         if 'Jfr pris' in product:
             description = product.split('Jfr pris ')[1].split('.</p>')[0].strip()
             tmpJfrPris = re.findall(r'\d+', description)
