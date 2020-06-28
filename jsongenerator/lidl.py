@@ -17,7 +17,8 @@ def getLidlProductList():
             tmpProduct = {
                 'name': product.split('<h3 class="product__title" data-clamp="data-clamp">')[1].split('<sup')[0].strip(),
                 'price' : product.split('<span class="pricebox__price">')[1].split('</span>')[0].strip().strip('.').replace('.',',') + ' kr',
-                'id' : product.split('<a data-ref-id="')[1].split('"')[0]
+                'id' : product.split('<a data-ref-id="')[1].split('"')[0],
+                'validDate' : product.split('<div class="ribbon__text">')[1].split('</div>')[0].strip()
             }
             if 'pricebox__basic-quantity' in product:
                 getQuantity = product.split('<div class="pricebox__basic-quantity">')[1].split('</div>')[0].strip()

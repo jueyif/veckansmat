@@ -64,7 +64,7 @@ function displayAProduct(jsonFile) {
      <div >
         <div style="width:180px;">
             <div>
-                <a href="`+ product.link + `"><img style="max-width:150px;" src="` + product.img + `"   /></a> 
+                <a href="`+ product.link + `"><img style="max-width:150px;" src="` + product.img + `" loading="lazy"  /></a> 
             </div>
             <div style="max-width:150px;">
                 <span class="text-left"><h4>`+ product.name + `</h4></span>
