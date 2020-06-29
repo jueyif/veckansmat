@@ -12,21 +12,22 @@ var storacooplogo = document.getElementById("storacoop")
 
 var spinner = document.getElementById("spinner")
 var showAllProducts = document.getElementById("showAllProducts")
+var arrowTop = document.getElementById("arrowTop")
 
 var currentStore = window.location.hash.replace('#', '')
 
 // spinner 
 function displaySpinner() {
     showAllProducts.innerHTML = ""
-    spinner.classList.remove("d-none");
+    spinner.classList.remove("d-none")
 }
 function hideSpinner() {
-    spinner.classList.add("d-none");
+    spinner.classList.add("d-none")
 }
 
 // show the current store 
 function hideActiveSign(logoname) {
-    logoname.classList.remove("storeSelected");
+    logoname.classList.remove("storeSelected")
 }
 function addActiveSign(logoname) {
     hideActiveSign(willyslogo)
@@ -157,6 +158,16 @@ function checkURL() {
         return willys()
     }
 }
+
+
+// arrow to the top 
+arrowTop.onclick = function() {
+    window.scrollTo(pageXOffset, 0)
+  }
+window.addEventListener('scroll', function() {
+    arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight)
+  })
+
 
 checkURL()
 document.getElementById("hemkop").addEventListener("click", hemkop)

@@ -158,6 +158,24 @@ a.article:hover {
 }
 
 /* ---------------------------------------------------
+    ARROW TOP
+----------------------------------------------------- */
+
+#arrowTop {
+    height: 9px;
+    width: 14px;
+    color:#7386D5;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+  }
+
+  #arrowTop::before {
+    content: '⬆TOP';
+  }
+
+/* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 
@@ -191,7 +209,7 @@ a.article:hover {
     display: block;
     padding: .75rem 1.25rem;
     margin-bottom: -1px;
-    color: black;
+    color:aliceblue;
     border: 1px solid rgba(0,0,0,.125);
 }
 .deletebutton{

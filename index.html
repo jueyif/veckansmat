@@ -18,6 +18,8 @@
   <div class="wrapper">
     <!-- Page Content  -->
     <div id="content">
+
+      <!-- navbar -->
       <nav class="navbar navbar-expand navbar-light bg-light" style="z-index: 1;">
         <div class="container-fluid">
 
@@ -70,7 +72,7 @@
 
       <!-- Spinner -->
       <div class="spinner-border d-none"
-        style="color: black; width: 3rem; height: 3rem; position: fixed; z-index: 999; top:0;" role="status"
+        style="color: black; width: 3rem; height: 3rem; position: fixed; z-index: -999; bottom: 0;" role="status"
         id="spinner">
         <span class="sr-only">Loading...</span>
       </div>
@@ -109,6 +111,9 @@
         </div>
       </main>
     </div>
+
+    <!-- arrow to the top -->
+    <div id="arrowTop" hidden></div>
 
     <!-- Sidebar  -->
     <nav id="sidebar" class="collapse active">
