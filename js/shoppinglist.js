@@ -1,3 +1,7 @@
+var notesTab = document.getElementById("notesTab")
+var notesContent = document.getElementById("notesContent")
+var notes = []
+
 function resetShoppinglist() {
     localStorage.setItem('shoplist', JSON.stringify(shoplistDB))
 }
@@ -32,3 +36,20 @@ function deleteFromShopplinglist(deleteItem) {
     resetShoppinglist()
     reloadAllStoreSublist()
 }
+
+
+// function displayNotes(){
+//     notesContent.innerHTML += `
+//     <li class="listGroupItem">
+//         <button type="button" class="btn btn-default btn-sm deletebutton" onclick="deleteFromShopplinglist('` + thisimg + `')">
+//         <img src="img/delete.svg"></button>` + thisname + `: ` + thisprice + `</li>`
+// }
+
+
+// notesTab.addEventListener("click", function(){
+//     if ( .classList.contains('d-none')) {
+//         .classList.remove('d-none')
+//     } else {
+//          .classList.add('d-none')
+//     }
+// })
