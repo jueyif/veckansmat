@@ -6,7 +6,7 @@ from shared import replaceLetters
 def getStoraCoopProductList():
     r = requests.get('https://www.coop.se/butiker-erbjudanden/stora-coop/sisjon/')
     productList = []
-    products = r.text.split('erbjudanden i butiken')[1].split('data-rows-on-desktop="0" data-rows-on-tablet="0" data-rows-on-phone="0">')[1].split('<article class="ItemTeaser" itemscope="" itemtype=')
+    products = r.text.split('<div class="ItemTeaser-info">')
     for product in products[1:]:
         tmpProduct = {
             'name' : replaceLetters(product.split('alt="')[1].split('"')[0]),
@@ -44,7 +44,7 @@ def getStoraCoopProductList():
             tmpProduct['jfr Pris'] = jfrPris
         else: 
             tmpProduct['jfrPris']  = None
-        if 'img class' in product:
-            tmpProduct['img']= product.split('<img class="u-posAbsoluteCenter" src="')[1].split('"')[0]
+        if 'img' in product:
+            tmpProduct['img']= product.split('<img')[1].split('src="')[1].split('"')[0]
         productList.append(tmpProduct)
     return productList
