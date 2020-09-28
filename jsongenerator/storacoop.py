@@ -26,13 +26,15 @@ def getStoraCoopProductList():
             if ':-' in price:
                 tmpProduct['price'] = price.strip(':-') + ' kr'
             else: 
-                priceDecimal = product.split('<span class="Splash-priceSup">')[1].split('</span>')[0].strip()
-                price = int(price) + int(priceDecimal) * 0.01
-                tmpProduct['price'] = str(Decimal(price).quantize(Decimal("0.00"))).replace('.',',') + ' kr'
-            if 'f&#246;r' in product.split('<span class="Splash-pricePre">')[1].split(' ')[0]:
-                amount = product.split('<span class="Splash-pricePre">')[1].split(' ')[0].strip('</span>').strip()
-                tmpProduct['price'] = amount + ' for ' + str(price)+ ' kr'
-            tmpProduct['price'].replace('.',',')
+                if 'Splash-priceSup' in product:
+                    priceDecimal = product.split('<span class="Splash-priceSup">')[1].split('</span>')[0].strip()
+                    price = int(price) + int(priceDecimal) * 0.01
+                    tmpProduct['price'] = str(Decimal(price).quantize(Decimal("0.00"))).replace('.',',') + ' kr'
+                if 'f&#246;r' in product.split('<span class="Splash-pricePre">')[1].split(' ')[0]:
+                    amount = product.split('<span class="Splash-pricePre">')[1].split(' ')[0].strip('</span>').strip()
+                    tmpProduct['price'] = amount + ' for ' + str(price)+ ' kr'
+            # if '.' in tmpProduct['price']:
+            #         tmpProduct['price'].replace('.',',')    
         if 'Jfr-pris' in product:
             description = product.split('Jfr-pris')[1].split('<')[0].strip( )
             if '-' in description:
