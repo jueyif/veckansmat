@@ -56,8 +56,10 @@ def getIcaMaxiProductList():
         if 'Jfr pris' in product:
             description = product.split('Jfr pris ')[1].split('.</p>')[0].strip()
             tmpJfrPris = re.findall(r'\d+', description)
-            jfrPris = int(tmpJfrPris[-2]) + int(tmpJfrPris[-1]) * 0.01
-            tmpProduct['jfr Pris'] = jfrPris
+            if len(tmpJfrPris) > 1:
+                jfrPris = int(tmpJfrPris[-2]) + int(tmpJfrPris[-1]) * 0.01
+                tmpProduct['jfr Pris'] = jfrPris
+            else: tmpProduct['jfr Pris']= None
         else: tmpProduct['jfr Pris']= None
         if 'data-original="//' in product:
             tmpProduct['img'] = product.split('<img class="lazy" data-original="')[1].split('"')[0]
