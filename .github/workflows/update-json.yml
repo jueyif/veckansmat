@@ -19,6 +19,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
+          
+      - name: Install 
+        run: pip3 install requests
 
       - name: update json
         run: python jsongenerator/main.py
