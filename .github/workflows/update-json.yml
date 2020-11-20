@@ -2,7 +2,6 @@ name: update-json
 
 # Run this workflow at 4:30 a.m. every Monday
 on: 
-  push:
   schedule: 
     - cron: '30 4 * * 1'
 
@@ -25,3 +24,12 @@ jobs:
 
       - name: update json
         run: python jsongenerator/main.py
+      
+      - name: commit json
+        run: |
+          git config --global user.name "Jueyi Fang"
+          git config --global user.email "369488962@qq.com"
+
+          git add -A
+          git commit -m "`date`"
+          git push
