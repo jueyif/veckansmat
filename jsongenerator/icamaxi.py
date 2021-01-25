@@ -18,14 +18,14 @@ def getIcaMaxiProductList():
         else: tmpProduct['brand'] = None
         if 'betala f&#246;r' or '%' in product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip():
             tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
-        if 'product-price__amount' in product:
-            tmpProduct['price'] = product.split('<div class="product-price__amount">')[1].split(' f&#246;r</div>')[0].strip() + ' för ' + product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
         if 'decimal' in product:
             productPriceIntegral = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')
             productPriceDecimal = product.split('<div class="product-price__decimal">')[1].split('</div>')[0].strip().strip('\:-')
             price = int(productPriceIntegral) + 0.01 * int(productPriceDecimal)
             tmpProduct['price'] =  str(Decimal(price).quantize(Decimal("0.00"))).replace('.',',') + ' kr'
         else: tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
+        if 'product-price__amount' in product:
+            tmpProduct['price'] = product.split('<div class="product-price__amount">')[1].split(' f&#246;r</div>')[0].strip() + ' för ' + product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
         if 'Jfr pris' in product:
             description = product.split('Jfr pris ')[1].split('.</p>')[0].strip()
             tmpJfrPris = re.findall(r'\d+', description)
@@ -43,24 +43,24 @@ def getIcaMaxiProductList():
         if 'Leverantör/Land' in product:
             tmpProduct['brand'] = replaceLetters(product.split('<h4>Leverantör/Land:</h4>')[1].split('<div class="col-8 col-sm-7 col-md-8">')[1].split('<p>')[1].split('</p>')[0].strip())
         else: tmpProduct['brand'] = None
-        if 'decimal' in product:
-            productPriceIntegral = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')
-            productPriceDecimal = product.split('<div class="product-price__decimal">')[1].split('</div>')[0].strip().strip('\:-')
-            price = int(productPriceIntegral) + 0.01 * int(productPriceDecimal)
-            tmpProduct['price'] =  str(Decimal(price).quantize(Decimal("0.00"))).replace('.',',') + ' kr'
-        if 'product-price__amount' in product:
-            tmpProduct['price'] = product.split('<div class="product-price__amount">')[1].split(' f&#246;r</div>')[0].strip() + ' för ' + product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-') + ' kr'
-        if 'product-price__price-value">' in product: 
-            tmpProduct['price'] = product.split('product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
+        if '<div class="product-price__price-value">' in product:
+            if 'betala f&#246;r' or '%' in product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip():
+                tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
+            elif 'decimal' in product:
+                productPriceIntegral = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')
+                productPriceDecimal = product.split('<div class="product-price__decimal">')[1].split('</div>')[0].strip().strip('\:-')
+                price = int(productPriceIntegral) + 0.01 * int(productPriceDecimal)
+                tmpProduct['price'] =  str(Decimal(price).quantize(Decimal("0.00"))).replace('.',',') + ' kr'
+            elif 'product-price__amount' in product:
+                tmpProduct['price'] = product.split('<div class="product-price__amount">')[1].split(' f&#246;r</div>')[0].strip() + ' för ' + product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-') + ' kr'
+            else: tmpProduct['price'] = product.split('<div class="product-price__price-value">')[1].split('</div>')[0].strip().strip('\:-')+ ' kr'
         if 'Jfr pris' in product:
             description = product.split('Jfr pris ')[1].split('.</p>')[0].strip()
             tmpJfrPris = re.findall(r'\d+', description)
-            if len(tmpJfrPris) > 1:
-                jfrPris = int(tmpJfrPris[-2]) + int(tmpJfrPris[-1]) * 0.01
-                tmpProduct['jfr Pris'] = jfrPris
-            else: tmpProduct['jfr Pris']= None
+            jfrPris = int(tmpJfrPris[-2]) + int(tmpJfrPris[-1]) * 0.01
+            tmpProduct['jfr Pris'] = jfrPris
         else: tmpProduct['jfr Pris']= None
-        if 'data-original=' in product:
+        if 'data-original="' in product:
             tmpProduct['img'] = product.split('<img class="lazy" data-original="')[1].split('"')[0]
         else: tmpProduct['img'] = None
         if 'Vikt/Volym' in product:
