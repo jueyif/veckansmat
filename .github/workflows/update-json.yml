@@ -1,0 +1,35 @@
+name: update-json
+
+# Run this workflow at 4:30 a.m. every Monday
+on: 
+  schedule: 
+    - cron: '30 4 * * 1'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          
+      - name: Install 
+        run: pip3 install requests
+
+      - name: update json
+        run: python jsongenerator/main.py
+      
+      - name: commit json
+        run: |
+          git config --global user.name "Jueyi Fang"
+          git config --global user.email "369488962@qq.com"
+
+          git add -A
+          git commit -m "`date`"
+          git push
