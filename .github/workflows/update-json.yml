@@ -2,6 +2,7 @@ name: update-json
 
 # Run this workflow at 4:30 a.m. every Monday
 on: 
+  push:
   schedule: 
     - cron: '30 4 * * 1'
 
@@ -33,5 +34,3 @@ jobs:
           git add -A
           git commit -m "`date`"
           git push
-          
-          
